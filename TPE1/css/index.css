@@ -1,6 +1,9 @@
 .contenedor {
     display: flex;
     flex-wrap: wrap;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .clase1 {
@@ -19,4 +22,13 @@
     width: 200px;
     background-color: rgb(175, 39, 134);
     color: rgb(255, 255, 255);
+}
+
+.captcha {
+    background-color: darkgrey;
+    width: 50px;
+}
+
+.error {
+    border: solid red;
 }

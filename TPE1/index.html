@@ -21,11 +21,35 @@
             <p>Izquierda</p>
         </div>
 
-        <div class="clase3" id="captcha" ></div>
-
+    </div>
+    <div class="contenedor">
+        <form>
+            <div class="clase1">
+                <label for="nombre">Nombre:</label>
+                <input id="nombre" type="text" name="nombre" value="" />
+            </div>
+            <div class="clase1">
+                <textarea name="comentario" rows="8" cols="40"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. A magni animi architecto maiores, veritatis blanditiis eum vel doloremque soluta, quis laudantium at aspernatur commodi numquam? Odit molestiae rerum minus quam.</textarea>
+            </div>
+            <div class="captcha" id="captcha"></div>
+            <div>
+                <input type="text" placeholder="Inserte el captcha" id="captchaField" />
+            </div>
+            <div id="captchaError"></div>
+            <button type="button" id="captchaButton">Enviar</button>
+        </form>
     </div>
 
-    
+    <ul class=”navigation”>
+        <li>Home</li>
+        <li>Productos</li>
+        <li>Nosotros</li>
+        <li>Contacto</li>
+    </ul>
+
+
+
+
 
 </body>
 
