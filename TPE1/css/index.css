@@ -6,6 +6,16 @@
     align-items: center;
 }
 
+.contenedorForm {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
 .clase1 {
     width: 200px;
     background-color: rgb(60, 0, 255);
@@ -17,6 +27,7 @@
     background-color: darkgrey;
     width: 50px;
     text-align: center;
+    margin: 20px
 }
 
 .error {
