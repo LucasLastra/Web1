@@ -10,25 +10,16 @@
     width: 200px;
     background-color: rgb(60, 0, 255);
     color: aliceblue;
-}
-
-.clase2 {
-    width: 200px;
-    background-color: rgb(4, 63, 63);
-    color: aliceblue;
-}
-
-.clase3 {
-    width: 200px;
-    background-color: rgb(175, 39, 134);
-    color: rgb(255, 255, 255);
+    text-align: center;
 }
 
 .captcha {
     background-color: darkgrey;
     width: 50px;
+    text-align: center;
 }
 
 .error {
     border: solid red;
+    text-align: center;
 }
