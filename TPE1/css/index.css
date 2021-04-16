@@ -2,7 +2,43 @@ body{
     margin:0;
     padding:0;
     background-color: rgb(214, 217, 255);
+    
+}
+
+p, li, td{
     font-family: Arial, Helvetica, sans-serif;
+    color: rgb(48, 48, 48);
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+}
+
+ol li{
+    font-size: 25px;
+}
+
+table{
+    background-color: rgb(104, 210, 255);
+    border: 5px double black;
+    border-radius: 10px;
+    margin: 30px;
+    width: 100%;
+}
+
+thead tr{
+    /*Acomodar!!!*/
+    background-color: rgb(64, 198, 255);
+    border: 5px double black;
+    margin: 0%;
+}
+
+table img{
+    width: 260px;
+    border-radius: 30px;
+    margin: auto;
+    padding: auto;
+    border:rgb(167, 167, 167) 1px solid;
+    box-shadow: rgb(27, 27, 27) 3px 3px 3px 2px;
 }
 
 .show{
@@ -15,10 +51,11 @@ body{
 
 h2{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 2;
+    font-size: 27px;
+    text-align: center;
 }
 
-.contenedor {
+.navbar {
     display: flex;
     margin: 20px 0;
     justify-content: center;
@@ -26,7 +63,7 @@ h2{
     
 }
 
-.contenedor a{
+.navbar a{
     width: 200px;
     color: aliceblue;
     text-align: center;
@@ -38,7 +75,7 @@ h2{
 
 }
 
-.contenedor a:hover, .activa{
+.navbar a:hover, .activa{
     background-color: rgb(178, 161, 253);
     color: rgb(49, 49, 49)
 }
@@ -48,14 +85,14 @@ section{
     margin-top: 50px;
 }
 
-.contenedorForm {
+.content {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
     margin: auto;
     padding: 20px;
-    width: 50%;
+    width: 70%;
     height: auto;
     border-radius: 50px;
     background-color: rgb(82, 175, 218);
@@ -64,6 +101,7 @@ section{
 .input{
     border-radius: 20px;
     padding: 10px;
+    margin: 5px;
     font-size: 19px;
     text-align: center;
     border: none;
@@ -79,8 +117,8 @@ section{
 }
 
 
-.captcha, .error-msj{
-    background-color: rgb(166, 223, 213);
+.captcha, .error-msj, .success-msj{
+    background-color: rgb(243, 255, 172);
     text-align: center;
     font-weight: bold;
     margin: 20px;
@@ -93,7 +131,10 @@ section{
     background-color: rgb(255, 172, 172);
 }
 
+.success-msj{
+    background-color: rgb(172, 255, 176);
+}
+
 .error {
     border: solid red;
-    text-align: center;
 }
