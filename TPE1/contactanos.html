@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Contáctanos</title>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <a href="index.html">Home</a>
+            <a href="bandas.html">Bandas</a>
+            <a href="contactanos.html" class="activa">Contáctanos</a>
+        </div>
+    </header>
+    <section>
+        <div class="content">
+            <h2>Complete el formulario para contactarnos:</h2>
+            <input id="nombre" class="input" type="text" name="nombre" placeholder="Nombre" />
+            <input id="email" class="input" type="text" name="email" placeholder="Email" />
+            <div class="captcha" id="captcha">
+
+            </div>
+
+            <div id="captchaConfirm" class="hide">
+
+            </div>
+
+            <input id="captchaField" class="input" type="text" placeholder="Inserte el captcha" />
+
+            <button type="button" id="captchaButton" class="button" name="captchaButton">Enviar</button>
+        </div>
+    </section>
+    <footer>
+
+    </footer>
+
+
+</body>
+<script src="js/captcha.js"></script>
+
+</html>

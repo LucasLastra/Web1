@@ -13,7 +13,7 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-let captchaError = document.getElementById("captchaError");
+let captchaConfirm = document.getElementById("captchaConfirm");
 
 document.querySelector("#captchaField").addEventListener("keyup", event => {
     if (event.key !== "Enter") return;
@@ -26,20 +26,22 @@ function checkCaptcha() {
     let captchaField = document.getElementById("captchaField");
     console.log(captchaField.value);
 
+    captchaConfirm.removeAttribute("class", "hide");
     if (captchaField.value == captchaNumber) {
-        alert("Enviado exitosamente");
-        captchaField.value = "";
+        
+        captchaConfirm.setAttribute("class","success-msj");
+        captchaConfirm.innerHTML = "¡Mensaje enviado exitosamente!";
     } else {
-        captchaField.parentNode.insertBefore(captchaError, captchaField);
+        captchaField.parentNode.insertBefore(captchaConfirm, captchaField);
         captchaField.setAttribute("class", "error input");
-        captchaError.removeAttribute("class", "hide");
-        captchaError.setAttribute("class","error-msj");
-        captchaError.innerHTML = "Captcha Incorrecto";
-        captchaField.value = "";
+        captchaConfirm.setAttribute("class","error-msj");
+        captchaConfirm.innerHTML = "Captcha Incorrecto";
+        
     }
+    captchaField.value = "";
     setTimeout(function() {
         captchaField.setAttribute("class", "input");
-        captchaError.setAttribute("class", "hide");
+        captchaConfirm.setAttribute("class", "hide");
         setCaptchaNumber();
 
     }, 3000);
