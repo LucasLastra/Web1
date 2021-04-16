@@ -12,30 +12,32 @@
 <body>
     <header>
         <div class="contenedor">
-            <div class="clase1">
-                <p>Home</p>
-            </div>
-            <div class="clase1">
-                <p>Bandas</p>
-            </div>
-            <div class="clase1">
-                <p>Sugerencias</p>
-            </div>
-
+            <a href="index.html" class="activa">Home</a>
+            <a href="bandas.html">Bandas</a>
+            <a href="sugerencias.html">sugerencias</a>
         </div>
     </header>
-    <div class="contenedorForm">
-        <div class="clase1">
-            <label for="nombre">Nombre:</label>
-            <input id="nombre" type="text" name="nombre" value="" />
+
+    <section>
+        <div class="contenedorForm">
+            <h2>Envie su nombre:</h2>
+            <input id="nombre" class="input" type="text" name="nombre" placeholder="Nombre" />
+            <div class="captcha" id="captcha">
+
+            </div>
+
+            <div id="captchaError" class="error-msj hide">
+
+            </div>
+
+            <input id="captchaField" class="input" type="text" placeholder="Inserte el captcha" />
+
+            <button type="button" id="captchaButton" class="button" name="captchaButton">Enviar</button>
         </div>
-        <div class="captcha" id="captcha"></div>
-        <div>
-            <input type="text" placeholder="Inserte el captcha" id="captchaField" />
-        </div>
-        <div id="captchaError"></div>
-        <button type="button" id="captchaButton" name="captchaButton">Enviar</button>
-    </div>
+    </section>
+    <footer>
+
+    </footer>
 </body>
 
 <script src="js/captcha.js"></script>

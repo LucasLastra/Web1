@@ -1,33 +1,96 @@
+body{
+    margin:0;
+    padding:0;
+    background-color: rgb(214, 217, 255);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.show{
+    display: inline-block;
+}
+
+.hide{
+    display: none;
+}
+
+h2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2;
+}
+
 .contenedor {
     display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
+    margin: 20px 0;
     justify-content: center;
-    align-items: center;
+    background-color: rgb(118, 87, 253);
+    
+}
+
+.contenedor a{
+    width: 200px;
+    color: aliceblue;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bolder;
+    padding: 20px;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.contenedor a:hover, .activa{
+    background-color: rgb(178, 161, 253);
+    color: rgb(49, 49, 49)
+}
+
+section{
+    color: rgb(36, 36, 36);
+    margin-top: 50px;
 }
 
 .contenedorForm {
     display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
+    margin: auto;
+    padding: 20px;
+    width: 50%;
+    height: auto;
+    border-radius: 50px;
+    background-color: rgb(82, 175, 218);
+}
+
+.input{
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 19px;
+    text-align: center;
+    border: none;
+}
+
+.button{
+    font-size: 19px;
+    padding: 10px;
     margin: 20px;
+    border-radius: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
 }
 
-.clase1 {
-    width: 200px;
-    background-color: rgb(60, 0, 255);
-    color: aliceblue;
+
+.captcha, .error-msj{
+    background-color: rgb(166, 223, 213);
     text-align: center;
+    font-weight: bold;
+    margin: 20px;
+    padding: 10px 15px;
+    font-size: 25px;
+    border-radius: 10px;
 }
 
-.captcha {
-    background-color: darkgrey;
-    width: 50px;
-    text-align: center;
-    margin: 20px
+.error-msj{
+    background-color: rgb(255, 172, 172);
 }
 
 .error {

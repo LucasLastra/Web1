@@ -28,14 +28,18 @@ function checkCaptcha() {
 
     if (captchaField.value == captchaNumber) {
         alert("Enviado exitosamente");
+        captchaField.value = "";
     } else {
         captchaField.parentNode.insertBefore(captchaError, captchaField);
-        captchaField.setAttribute("class", "error");
+        captchaField.setAttribute("class", "error input");
+        captchaError.removeAttribute("class", "hide");
+        captchaError.setAttribute("class","error-msj");
         captchaError.innerHTML = "Captcha Incorrecto";
+        captchaField.value = "";
     }
     setTimeout(function() {
-        captchaField.setAttribute("class", "");
-        captchaError.remove()
+        captchaField.setAttribute("class", "input");
+        captchaError.setAttribute("class", "hide");
         setCaptchaNumber();
 
     }, 3000);
