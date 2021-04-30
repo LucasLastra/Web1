@@ -1,7 +1,16 @@
+"use strict"
+
+//Event listener al clickear boton de formulario
 document.getElementById("captchaButton").addEventListener("click", checkCaptcha);
 
 let captchaNumber;
 
+//Funcion que obtiene un numero entero entre los valores enviados por parametros
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+//Funcion para crear y mostrar el "captcha"
 function setCaptchaNumber() {
     captchaNumber = getRndInteger(1000, 9999);
     document.getElementById("captcha").innerHTML = captchaNumber;
@@ -9,39 +18,36 @@ function setCaptchaNumber() {
 
 setCaptchaNumber();
 
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-
-let captchaConfirm = document.getElementById("captchaConfirm");
-
+//Funcion para habilitar el envio de captcha con tecla "enter"
 document.querySelector("#captchaField").addEventListener("keyup", event => {
     if (event.key !== "Enter") return;
     document.querySelector("#captchaButton").click();
     event.preventDefault();
 });
 
+//Funcion para validar si el captcha es correcto y mostrar mensaje de error o de exito
 function checkCaptcha() {
 
     let captchaField = document.getElementById("captchaField");
-    console.log(captchaField.value);
+    let captchaMsg = document.getElementById("captchaMsg");
 
-    captchaConfirm.removeAttribute("class", "hide");
+    captchaMsg.classList.remove("hide");
     if (captchaField.value == captchaNumber) {
-        
-        captchaConfirm.setAttribute("class","success-msj");
-        captchaConfirm.innerHTML = "¡Mensaje enviado exitosamente!";
+
+        captchaMsg.classList.add("success-msj");
+        captchaMsg.innerHTML = "¡Mensaje enviado exitosamente!";
     } else {
-        captchaField.parentNode.insertBefore(captchaConfirm, captchaField);
-        captchaField.setAttribute("class", "error input");
-        captchaConfirm.setAttribute("class","error-msj");
-        captchaConfirm.innerHTML = "Captcha Incorrecto";
-        
+        captchaField.classList.add("error");
+        captchaMsg.classList.add( "error-msj");
+        captchaMsg.innerHTML = "Captcha Incorrecto";
+
     }
     captchaField.value = "";
+    
+    //Mostrar el mensaje por 3 segundos y reiniciar el captcha
     setTimeout(function() {
-        captchaField.setAttribute("class", "input");
-        captchaConfirm.setAttribute("class", "hide");
+        captchaField.classList.remove("error");
+        captchaMsg.classList.add("hide");
         setCaptchaNumber();
 
     }, 3000);

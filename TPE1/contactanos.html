@@ -18,22 +18,23 @@
         </div>
     </header>
     <section>
-        <div class="content">
-            <h2>Complete el formulario para contactarnos:</h2>
-            <input id="nombre" class="input" type="text" name="nombre" placeholder="Nombre" />
-            <input id="email" class="input" type="text" name="email" placeholder="Email" />
-            <div class="captcha" id="captcha">
+        <form name="formContacto" action="">
+            <div class="content">
+                <h2>Complete el formulario para contactarnos:</h2>
+                <input id="nombre" class="input" type="text" name="nombre" placeholder="Nombre"  />
+                <input id="apellido" class="input" type="text" name="apellido" placeholder="apellido"  />
+                <input id="email" class="input" type="text" name="email" placeholder="Email" />
+                <label for="comment">Escribanos !</label>
+                <textarea rows="4" class="input" cols="50" name="comment" form="usrform"></textarea>
+                <div class="captcha" id="captcha"></div>
+                <input id="captchaField" class="input" type="text" placeholder="Inserte el captcha" />
+
+                <button for="formContacto" type="button" id="captchaButton" class="button" name="captchaButton">Enviar</button>
+                
+                <div id="captchaMsg" class="hide"></div>
 
             </div>
-
-            <div id="captchaConfirm" class="hide">
-
-            </div>
-
-            <input id="captchaField" class="input" type="text" placeholder="Inserte el captcha" />
-
-            <button type="button" id="captchaButton" class="button" name="captchaButton">Enviar</button>
-        </div>
+        </form>
     </section>
     <footer>
 
