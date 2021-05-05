@@ -27,20 +27,17 @@ document.querySelector("#captchaField").addEventListener("keyup", event => {
 
 //Funcion para validar si el captcha es correcto y mostrar mensaje de error o de exito
 function checkCaptcha() {
-
     let captchaField = document.getElementById("captchaField");
     let captchaMsg = document.getElementById("captchaMsg");
 
     captchaMsg.classList.remove("hide");
     if (captchaField.value == captchaNumber) {
-
         captchaMsg.classList.add("success-msj");
         captchaMsg.innerHTML = "¡Mensaje enviado exitosamente!";
     } else {
         captchaField.classList.add("error");
         captchaMsg.classList.add( "error-msj");
         captchaMsg.innerHTML = "Captcha Incorrecto";
-
     }
     captchaField.value = "";
     
@@ -49,7 +46,5 @@ function checkCaptcha() {
         captchaField.classList.remove("error");
         captchaMsg.classList.add("hide");
         setCaptchaNumber();
-
     }, 3000);
-
 }
