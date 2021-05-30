@@ -47,7 +47,11 @@ table img{
 }
 
 .hide{
-    display: none;
+     display: none !important ;
+}
+
+.display-flex{
+    display: flex !important;
 }
 
 h2, h3{
@@ -60,19 +64,31 @@ h3{
     font-size: 22px;
 }
 
-.navbar {
-    display: flex;
+.navbar, .menu {
+    display: none;
+    flex-direction: column;
     margin: 20px 0;
     justify-content: center;
     background-color: rgb(118, 87, 253);
 }
 
-.navbar a{
+.menu{
+    display: flex;
+}
+
+.menu a{
+    margin: auto;
+    padding: auto;
+}
+
+
+header a{
     width: 200px;
     color: aliceblue;
     text-align: center;
     font-weight: bolder;
     padding: 20px;
+    margin: auto;
     font-size: 25px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -158,4 +174,15 @@ footer{
 
 .error {
     border: solid red;
+}
+
+@media screen and (min-width: 660px){
+    .menu{
+        display: none;
+    }
+
+    .navbar{
+        display: flex;
+        flex-direction: row;
+    }
 }
