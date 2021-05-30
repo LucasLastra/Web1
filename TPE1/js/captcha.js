@@ -32,11 +32,12 @@ function checkCaptcha() {
 
     captchaMsg.classList.remove("hide");
     if (captchaField.value == captchaNumber) {
-        captchaMsg.classList.add("success-msj");
+        document.getElementById("formContacto").reset();
+        captchaMsg.classList.add("successMsg");
         captchaMsg.innerHTML = "¡Mensaje enviado exitosamente!";
     } else {
         captchaField.classList.add("error");
-        captchaMsg.classList.add( "error-msj");
+        captchaMsg.classList.add( "errorMsg");
         captchaMsg.innerHTML = "Captcha Incorrecto";
     }
     captchaField.value = "";
@@ -44,7 +45,7 @@ function checkCaptcha() {
     //Mostrar el mensaje por 3 segundos y reiniciar el captcha
     setTimeout(function() {
         captchaField.classList.remove("error");
-        captchaMsg.classList.add("hide");
+        captchaMsg.className = "hide";
         setCaptchaNumber();
     }, 3000);
 }
