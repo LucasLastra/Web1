@@ -19,6 +19,22 @@
     </header>
 
     <section>
+        <form id="formDiscos" name="formDiscos" action="">
+            <div class="content">
+                <h2>Insertar informacion a la tabla</h2>
+                <input id="genre" class="input" type="text" name="genre" placeholder="Genero" />
+                <input id="band" class="input" type="text" name="band" placeholder="Banda/s" />
+                <input id="disc" class="input" type="text" name="disc" placeholder="Disco/s" />
+                <button for="formDiscos" type="button" id="discosButton" class="button"
+                    name="discosButton">Agregar</button>
+                <button for="formDiscos" type="button" id="discosButtonSend" class="button"
+                    name="discosButtonSend">Enviar</button>
+                <div id="bandsToAdd"></div>
+            </div>
+
+        </form>
+    </section>
+    <section>
         <div class="content">
             <h2>Generos musicales y algunos ejemplos</h2>
             <table>
@@ -26,25 +42,10 @@
                     <tr>
                         <td>Género</td>
                         <td>Artistas / Bandas</td>
-                        <td>Foto</td>
+                        <td>Discografia</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Rock</td>
-                        <td>Divididos, Indio, Soda Stereo, Spinetta, Virus, Radiohead</td>
-                        <td><img src="img/divididos.jpg" alt="Recital de divididos"></td>
-                    </tr>
-                    <tr>
-                        <td>Metal</td>
-                        <td>Rammstein, Motörhead, Death, System of a Down</td>
-                        <td><img src="img/rammstein.png" alt="Recital Rammstein"></td>
-                    </tr>
-                    <tr>
-                        <td>Pop</td>
-                        <td>Los Abuelos de la Nada, G.I.T., Agapornis</td>
-                        <td><img src="img/abuelos-de-la-nada.jpg" alt="Los Abuelos de la Nada"></td>
-                    </tr>
+                <tbody id="tablaBandas">
                 </tbody>
             </table>
 
@@ -67,5 +68,9 @@
     <footer>
         <p>Hecho por Lucas Lastra y Juan Ignacio Lastra.</p>
     </footer>
+
+    <script src="js/tablaBandas.js"></script>
+
 </body>
+
 </html>
