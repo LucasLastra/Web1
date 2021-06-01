@@ -53,6 +53,7 @@ let dataBandas = [
 ];
 
 document.getElementById("discosButton").addEventListener("click", loadData);
+document.getElementById("discosButtonx3").addEventListener("click", randomElem);
 
 document.getElementById("discosButtonSend").addEventListener("click", () => {
     dataBandas = [...dataBandas, ...bandsToAdd];
@@ -103,4 +104,45 @@ function loadData() {
     }
 
     bandsToAdd.push(newObj);
+}
+
+async function randomElem() {
+
+    let pokemons = [];
+
+    for (let index = 0; index < 3; index++) {
+        let pokemon = getRndInteger(1, 150);
+        pokemons.push(
+            await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+        );
+    }
+
+    let pokemonsToAdd = [];
+
+    for (const almostPokemon of pokemons) {
+        let pokemon = await almostPokemon.json();
+        let abilities = pokemon.abilities.map(e => e.ability.name);
+
+        let newObj = {};
+
+        newObj[pokemon.name] = {
+            genero: pokemon.types[0].type.name,
+            banda: pokemon.name,
+            discografia: abilities
+        }
+
+        pokemonsToAdd.push(newObj);
+    }
+
+    dataBandas = [...dataBandas, ...pokemonsToAdd];
+    fillTable();
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
 }
