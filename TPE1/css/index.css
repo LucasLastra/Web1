@@ -12,12 +12,16 @@ p, li, td{
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(48, 48, 48);
     font-weight: bold;
-    font-size: 18px;
-    padding: 10px;
+    font-size: 14px;
+    padding: 5px;
 }
 
 ol li{
-    font-size: 25px;
+    font-size: 20px;
+}
+
+.standBy{
+    list-style: none;
 }
 
 table{
@@ -60,18 +64,18 @@ table img{
 
 h2, h3{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 28px;
+    font-size: 24px;
     text-align: center;
 }
 
 h3{
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .navbar, .menu {
     display: none;
     flex-direction: column;
-    margin: 20px 0;
+    margin: 5px 0;
     justify-content: center;
     background-color: rgb(118, 87, 253);
 }
@@ -87,13 +91,13 @@ h3{
 
 
 header a{
-    width: 200px;
+    width: 100%;
     color: aliceblue;
     text-align: center;
     font-weight: bolder;
-    padding: 20px;
+    padding: 5px;
     margin: auto;
-    font-size: 25px;
+    font-size: 22px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -143,22 +147,31 @@ footer{
     border-radius: 20px;
     padding: 10px;
     margin: 5px;
-    font-size: 19px;
+    font-size: 14px;
     text-align: center;
     border: none;
+    width: 50%;
 }
 
 .button{
-    font-size: 19px;
-    padding: 10px;
-    margin: 20px;
+    width: auto; 
+    font-size: 14px;
+    padding: 15px;
+    margin: 5px;
     border-radius: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
+    
 }
 
+.buttons-bands{
+width: 100%;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+}
 
-.captcha, .errorMsg, .successMsg{
+.captcha, .errorMsg, .successMsg, .standBy{
     background-color: rgb(243, 255, 172);
     text-align: center;
     font-weight: bold;
@@ -172,7 +185,7 @@ footer{
     background-color: rgb(255, 172, 172);
 }
 
-.successMsg {
+.successMsg{
     background-color: rgb(172, 255, 176);
 }
 
@@ -188,5 +201,38 @@ footer{
     .navbar{
         display: flex;
         flex-direction: row;
+    }
+
+    header a{
+        width: 200px;
+        
+        padding: 20px;
+        font-size: 28px;
+    }
+
+    h2{
+        font-size: 28px;
+    }
+    
+    h3{
+        font-size: 22px;
+    }
+
+    .input{
+        font-size: 18px;
+        width: 60%;
+    }
+
+    .button{
+        font-size: 18px;
+    }
+
+    p, li, td{
+        font-size: 18px;
+        padding: 10px;
+    }
+    
+    ol li{
+        font-size: 25px;
     }
 }

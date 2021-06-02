@@ -11,6 +11,9 @@
 
 <body>
     <header>
+        <div class="menu">
+            <a>MENU</a>
+        </div>
         <div class="navbar">
             <a href="index.html">Home</a>
             <a href="bandas.html" class="activa">Bandas</a>
@@ -25,15 +28,21 @@
                 <input id="genre" class="input" type="text" name="genre" placeholder="Genero" />
                 <input id="band" class="input" type="text" name="band" placeholder="Banda/s" />
                 <input id="disc" class="input" type="text" name="disc" placeholder="Disco/s" />
-                <button for="formDiscos" type="button" id="discosButton" class="button"
-                    name="discosButton">Agregar</button>
+                <div class="buttons-bands">
+                    <button for="formDiscos" type="button" id="discosButton" class="button"
+                    name="discosButton ">Agregar</button>
                 <button for="formDiscos" type="button" id="discosButtonSend" class="button"
                     name="discosButtonSend">Enviar</button>
                 <button for="formDiscos" type="button" id="discosButtonDelete" class="button"
                     name="discosButtonDelete">Borrar tabla</button>
+                
                 <button for="formDiscos" type="button" id="discosButtonx3" class="button"
-                    name="discosButtonx3">Agregar 3 elem aleatorios a la tabla</button>
-                <div id="bandsToAdd"></div>
+                    name="discosButtonx3">Agregar 3 elem. a la tabla</button>
+                </div>
+                
+                <ul id="bandsToAdd" class="standBy hide">
+
+                </ul>
             </div>
 
         </form>
@@ -74,7 +83,7 @@
     </footer>
 
     <script src="js/tablaBandas.js"></script>
-
+    <script src="js/menu.js"></script>
 </body>
 
 </html>

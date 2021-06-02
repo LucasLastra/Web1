@@ -2,6 +2,27 @@
 
 let dataBandas = [
     {
+        radiohead: {
+            genero: "Rock",
+            banda: "Radiohead",
+            discografia: ["In Rainbows", "Hail to the Thief"]
+        }
+    },
+    {
+        redhot: {
+            genero: "Funk",
+            banda: "Red Hot Chili Peppers",
+            discografia: ["I'm with You", "The Getaway"]
+        }
+    },
+    {
+        metallica: {
+            genero: "Thrash",
+            banda: "Metallica",
+            discografia: ["St. Anger", "Death Magnetic", "Hardwired... to Self-Destruct"]
+        }
+    },
+    {
         divididos: {
             genero: "rock",
             banda: "divididos",
@@ -9,45 +30,10 @@ let dataBandas = [
         }
     },
     {
-        divididos1: {
-            genero: "pop",
-            banda: "divididos",
-            discografia: ["El narigon del siglo", "amapola del 66"]
-        }
-    },
-    {
-        divididos2: {
+        piojos: {
             genero: "rock",
-            banda: "divididos",
-            discografia: ["El narigon del siglo", "amapola del 66"]
-        }
-    },
-    {
-        divididos3: {
-            genero: "rock",
-            banda: "divididos",
-            discografia: ["El narigon del siglo", "amapola del 66"]
-        }
-    },
-    {
-        divididos4: {
-            genero: "metal",
-            banda: "divididos",
-            discografia: ["El narigon del siglo", "amapola del 66"]
-        }
-    },
-    {
-        divididos5: {
-            genero: "pop",
-            banda: "divididos",
-            discografia: ["El narigon del siglo", "amapola del 66"]
-        }
-    },
-    {
-        divididos6: {
-            genero: "metal",
-            banda: "divididos",
-            discografia: ["El narigon del siglo", "amapola del 66"]
+            banda: "Los Piojos",
+            discografia: ["Azul", "3er arco", "Ay ay ay"]
         }
     }
 ];
@@ -75,14 +61,21 @@ function fillTable() {
     for (const banda of dataBandas) {
         for (const key in banda) {
             let data = banda[key];
-            htmlBandas += `<tr>
-                        <td>${data.genero}</td>
-                        <td>${data.banda}</td>
-                        <td>${data.discografia}</td>
-                       </tr>`;
+            if (data.pokemon == true) {
+                htmlBandas += `<tr>
+                <td><mark>${data.genero}</mark></td>
+                <td><mark>${data.banda}</mark></td>
+                <td><mark>${data.discografia}</mark></td>
+               </tr>`;
+            } else {
+                htmlBandas += `<tr>
+                <td>${data.genero}</td>
+                <td>${data.banda}</td>
+                <td>${data.discografia}</td>
+               </tr>`;
+            }
         }
     }
-
     document.querySelector("#tablaBandas").innerHTML = htmlBandas;
 }
 
@@ -92,8 +85,8 @@ function loadData() {
     let genre = document.getElementById("genre").value;
     let band = document.getElementById("band").value;
     let disc = document.getElementById("disc").value;
-
-    document.querySelector("#bandsToAdd").innerHTML += band + ',';
+    let standBy = document.querySelector("#bandsToAdd");
+    standBy.innerHTML += `<li>${genre}, ${band}, ${disc}</li>`;
 
     let newObj = {};
 
@@ -102,14 +95,12 @@ function loadData() {
         banda: band,
         discografia: [disc]
     }
-
     bandsToAdd.push(newObj);
+    standBy.classList.remove("hide");
 }
 
 async function randomElem() {
-
     let pokemons = [];
-
     for (let index = 0; index < 3; index++) {
         let pokemon = getRndInteger(1, 150);
         pokemons.push(
@@ -133,12 +124,11 @@ async function randomElem() {
         newObj[pokemon.name] = {
             genero: pokemon.types[0].type.name,
             banda: pokemon.name,
-            discografia: abilities
+            discografia: abilities,
+            pokemon: true
         }
-
         pokemonsToAdd.push(newObj);
     }
-
     dataBandas = [...dataBandas, ...pokemonsToAdd];
     fillTable();
 }
