@@ -1,95 +1,43 @@
 "use strict"
+let url = "https://60d9dfbd5f7bf10017547810.mockapi.io/api/v1/bandas";
 
-//Definir arreglo estatico
+async function getBandas() {
+    let htmlBandas = "";
+    try {
+        let respuesta = await fetch(url);
+        if (respuesta.status == 200) {
+            console.log("status OK");
 
-let dataBandas = [
-    {
-        radiohead: {
-            genero: "Rock",
-            banda: "Radiohead",
-            discografia: ["In Rainbows", "Hail to the Thief"]
-        }
-    },
-    {
-        redhot: {
-            genero: "Funk",
-            banda: "Red Hot Chili Peppers",
-            discografia: ["I'm with You", "The Getaway"]
-        }
-    },
-    {
-        metallica: {
-            genero: "Thrash",
-            banda: "Metallica",
-            discografia: ["St. Anger", "Death Magnetic", "Hardwired... to Self-Destruct"]
-        }
-    },
-    {
-        divididos: {
-            genero: "rock",
-            banda: "divididos",
-            discografia: ["El narigon del siglo", "amapola del 66"]
-        }
-    },
-    {
-        piojos: {
-            genero: "rock",
-            banda: "Los Piojos",
-            discografia: ["Azul", "3er arco", "Ay ay ay"]
-        }
-    }
-];
+            let arrayBandas = await respuesta.json();
 
-//Defino acciones de los botones
-//Agregar un elemento
-document.getElementById("discosButtonAdd").addEventListener("click", loadData);
-//Agrega 3 elementos sorpresa y random
-document.getElementById("discosButtonx3").addEventListener("click", randomElem);
-//Inserta los elementos a la tabla del arreglo de nuevos objetos para agregar
-document.getElementById("discosButtonSend").addEventListener("click", () => {
-    dataBandas = [...dataBandas, ...bandsToAdd];
-    fillTable();
-    bandsToAdd = [];
-    document.querySelector("#bandsToAdd").innerHTML = '';
-    document.querySelector("#bandsToAdd").classList.add('hide');
-});
-//Eliminar elementos de la tabla
-document.getElementById("discosButtonDelete").addEventListener("click", () => {
-    dataBandas = [];
-    fillTable();
-});
-
-//Genero y meustro la tabla cuando se muestra la pagina
-fillTable();
-
-//Funcion para generar y mostrar la tabla
-function fillTable() {
-    let htmlBandas = '';
-
-    //recorro el arreglo y sus objetos y creo las filas de la tabla
-    for (const banda of dataBandas) {
-        for (const key in banda) {
-            let data = banda[key];
-            if (data.pokemon == true) {
-                htmlBandas += `<tr>
-                <td><mark>${data.genero}</mark></td>
-                <td><mark>${data.banda}</mark></td>
-                <td><mark>${data.discografia}</mark></td>
-               </tr>`;
-            } else {
-                htmlBandas += `<tr>
-                <td>${data.genero}</td>
-                <td>${data.banda}</td>
-                <td>${data.discografia}</td>
-               </tr>`;
+            for (let i = 0; i < arrayBandas.length; i++) {
+                if (arrayBandas[i].banda.pokemon == true) {
+                    htmlBandas += `<tr>
+                    <td><mark>${arrayBandas[i].banda.genero}</mark></td>
+                    <td><mark>${arrayBandas[i].banda.nombre}</mark></td>
+                    <td><mark>${arrayBandas[i].banda.discografia}</mark></td>
+                   </tr>`;
+                } else {
+                    htmlBandas += `<tr>
+                    <td>${arrayBandas[i].banda.genero}</td>
+                    <td>${arrayBandas[i].banda.nombre}</td>
+                    <td>${arrayBandas[i].banda.discografia}</td>
+                   </tr>`;
+                }
             }
+            document.querySelector("#tablaBandas").innerHTML = htmlBandas;
+        } else {
+            console.log("error de conección");
         }
+    } catch (error) {
+        console.log(error);
     }
-    //Lo dibujo en pantalla
-    document.querySelector("#tablaBandas").innerHTML = htmlBandas;
 }
+getBandas();
+
 
 let bandsToAdd = [];
+let pokemonsToAdd = [];
 //Funcion para agregar nuevos datos a la tabla
 function loadData() {
     let genre = document.getElementById("genre");
@@ -98,15 +46,15 @@ function loadData() {
     //Compruebo si los campos no estan vacios
     if (genre.value == '') {
         genre.classList.add("error");
-        setTimeout(() => {genre.classList.remove("error");}, 3000);
+        setTimeout(() => { genre.classList.remove("error"); }, 3000);
     }
     else if (band.value == '') {
         band.classList.add("error");
-        setTimeout(() => {band.classList.remove("error");}, 3000);
+        setTimeout(() => { band.classList.remove("error"); }, 3000);
     }
     else if (disc.value == '') {
         disc.classList.add("error");
-        setTimeout(() => {disc.classList.remove("error");}, 3000);
+        setTimeout(() => { disc.classList.remove("error"); }, 3000);
     } else {
 
         genre = genre.value;
@@ -118,9 +66,9 @@ function loadData() {
 
         let newObj = {};
         //Creo el nuevo objeto
-        newObj[band] = {
+        newObj["banda"] = {
             genero: genre,
-            banda: band,
+            nombre: band,
             discografia: [disc]
         }
         //Lo guardo en un array de nuevos objetos
@@ -129,6 +77,66 @@ function loadData() {
         document.getElementById("formDiscos").reset();
     }
 }
+
+async function postBanda(bandsToAdd) {
+    for (let i = 0; i < bandsToAdd.length; i++) {
+        let nuevaBanda = {
+            "banda": {
+                "genero": bandsToAdd[i].banda.genero,
+                "nombre": bandsToAdd[i].banda.nombre,
+                "discografia": bandsToAdd[i].banda.discografia
+            }
+        }
+        doRequest(url, "POST", nuevaBanda);
+    }
+    getBandas();
+}
+
+async function doRequest(url, method, body) {
+    let data = {
+        "method": method,
+        "headers": { "Content-type": "application/json" }
+    };
+    if (body) {
+        data['body'] = JSON.stringify(body);
+    }
+    try {
+        let res = await fetch(url, data)
+        console.log(res);
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function post3Pokemons() {
+    await randomElem();
+    postBanda(pokemonsToAdd);
+    getBandas();
+}
+
+async function sendBandas(){
+    postBanda(bandsToAdd);
+    bandsToAdd = [];
+    document.querySelector("#bandsToAdd").innerHTML = 'Cargando...';
+
+    //CAMBIAR!!!
+    setTimeout(() => {
+        getBandas();
+        document.querySelector("#bandsToAdd").innerHTML = '';
+        document.querySelector("#bandsToAdd").classList.add('hide');
+    }, 3000);
+}
+
+//Defino acciones de los botones
+//Agregar un elemento
+document.getElementById("discosButtonAdd").addEventListener("click", loadData);
+//Agrega 3 elementos sorpresa y random
+document.getElementById("discosButtonx3").addEventListener("click", post3Pokemons);
+//Inserta los elementos a la tabla del arreglo de nuevos objetos para agregar
+document.getElementById("discosButtonSend").addEventListener("click", sendBandas);
+
+
 //Funcion para agregar 3 elementos random a la tabla
 async function randomElem() {
     let pokemons = [];
@@ -146,7 +154,7 @@ async function randomElem() {
         );
     }
 
-    let pokemonsToAdd = [];
+    pokemonsToAdd = [];
     //Con los datos de la pokeapi creo un nuevo objeto y lo agrego a la tabla 
     for (const almostPokemon of pokemons) {
         let pokemon = await almostPokemon.json();
@@ -154,16 +162,14 @@ async function randomElem() {
 
         let newObj = {};
 
-        newObj[pokemon.name] = {
+        newObj["banda"] = {
             genero: pokemon.types[0].type.name,
-            banda: pokemon.name,
+            nombre: pokemon.name,
             discografia: abilities,
             pokemon: true
         }
         pokemonsToAdd.push(newObj);
     }
-    dataBandas = [...dataBandas, ...pokemonsToAdd];
-    fillTable();
 }
 //Funcion para obtener un numero random
 function getRndInteger(min, max) {
