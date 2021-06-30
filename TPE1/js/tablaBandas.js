@@ -28,6 +28,134 @@ async function getBandas() {
             document.querySelector("#tablaBandas").innerHTML = htmlBandas;
         } else {
             console.log("error de conección");
+let dataBandas = [];
+
+//Defino acciones de los botones
+//Agregar un elemento
+document.getElementById("discosButtonAdd").addEventListener("click", loadData);
+
+document.getElementById("filterSearch").addEventListener("keyup", filterSearch);
+//Agrega 3 elementos sorpresa y random
+document.getElementById("discosButtonx3").addEventListener("click", randomElem);
+//Inserta los elementos a la tabla del arreglo de nuevos objetos para agregar
+document.getElementById("discosButtonSend").addEventListener("click", () => {
+    dataBandas = [...dataBandas, ...bandsToAdd];
+    fillTable();
+    bandsToAdd = [];
+    document.querySelector("#bandsToAdd").innerHTML = '';
+    document.querySelector("#bandsToAdd").classList.add('hide');
+});
+//Eliminar elementos de la tabla
+document.getElementById("discosButtonDelete").addEventListener("click", () => {
+    dataBandas = [];
+    fillTable();
+});
+
+//Genero y meustro la tabla cuando se muestra la pagina
+fillTable();
+
+function filterSearch() {
+    
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById("filterSearch");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tablaBandas");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < 3; j++) {
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    if (i < tr.length-1) {
+                        i++;
+                    }                    
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+}
+
+function createButton(name, action) {
+
+    let button = document.createElement("button");
+    button.name = name;
+    button.classList.add("button");
+    button.innerHTML = action;
+    if (action === "edit") {
+        button.addEventListener('click', editRow);
+    }
+    if (action === "delete") {
+        button.addEventListener('click', deleteRow);
+    }
+    return button;
+}
+
+function editRow() {
+    let input = document.createElement("input");
+    let buttonSend = document.createElement("button");
+
+    this.disabled = true;
+
+    input.classList.add("input");
+    this.parentNode.previousElementSibling.replaceWith(input);
+
+    buttonSend.classList.add("button");
+    buttonSend.innerHTML = "SEND";
+    buttonSend.addEventListener('click', () => {
+        let body = {
+            "discografia": input.value
+        };
+        //doRequest(url, "PUT", body);
+        fillTable();
+    });
+
+    input.parentNode.insertBefore(buttonSend, input);
+
+}
+
+function deleteRow() {
+
+    //doRequest(url, "DELETE", this.name);
+
+}
+
+//Funcion para generar y mostrar la tabla
+function fillTable() {
+    let htmlBandas = '';
+    let tablaBandasDOM = document.querySelector("#tablaBandas");
+    tablaBandasDOM.innerHTML = "";
+
+    //recorro el arreglo y sus objetos y creo las filas de la tabla
+    for (const banda of dataBandas) {
+        let row = document.createElement("tr");
+        for (const key in banda) {
+            let data = banda[key];
+            if (data.pokemon == true) {
+                htmlBandas += `<tr>
+                <td><mark>${data.genero}</mark></td>
+                <td><mark>${data.banda}</mark></td>
+                <td><mark>${data.discografia}</mark></td>
+               </tr>`;
+            } else {
+                htmlBandas = `
+                <td>${data.genero}</td>
+                <td>${data.banda}</td>
+                <td>${data.discografia}</td>
+               `;
+            }
+            row.innerHTML = htmlBandas;
+            let buttonEdit = document.createElement("td");
+            buttonEdit.appendChild(createButton(data.banda, "edit"));
+            let buttonDelete = document.createElement("td");
+            buttonDelete.appendChild(createButton(data.banda, "delete"));
+            row.appendChild(buttonEdit);
+            row.appendChild(buttonDelete);
+            tablaBandasDOM.appendChild(row);
         }
     } catch (error) {
         console.log(error);
