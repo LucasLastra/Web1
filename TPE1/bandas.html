@@ -1,89 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
-    <title>Bandas</title>
-</head>
-
-<body>
-    <header>
-        <div class="menu">
-            <a>MENU</a>
+<form id="formDiscos" name="formDiscos" action="">
+    <div class="content">
+        <h2>Insertar informacion a la tabla</h2>
+        <input id="genre" class="input" type="text" name="genre" placeholder="Genero" />
+        <input id="band" class="input" type="text" name="band" placeholder="Banda/s" />
+        <input id="disc" class="input" type="text" name="disc" placeholder="Disco/s" />
+        <div class="buttons-bands">
+            <button for="formDiscos" type="button" id="discosButtonAdd" class="button"
+                name="discosButtonAdd ">Agregar</button>
+            <button for="formDiscos" type="button" id="discosButtonSend" class="button"
+                name="discosButtonSend">Enviar</button>
+            <button for="formDiscos" type="button" id="discosButtonx3" class="button" name="discosButtonx3">Agregar 3
+                elem. a la tabla</button>
         </div>
-        <div class="navbar">
-            <a href="index.html">Home</a>
-            <a href="bandas.html" class="activa">Bandas</a>
-            <a href="contactanos.html">Contáctanos</a>
-        </div>
-    </header>
 
-    <section>
-        <form id="formDiscos" name="formDiscos" action="">
-            <div class="content">
-                <h2>Insertar informacion a la tabla</h2>
-                <input id="genre" class="input" type="text" name="genre" placeholder="Genero" />
-                <input id="band" class="input" type="text" name="band" placeholder="Banda/s" />
-                <input id="disc" class="input" type="text" name="disc" placeholder="Disco/s" />
-                <div class="buttons-bands">
-                    <button for="formDiscos" type="button" id="discosButtonAdd" class="button"
-                    name="discosButtonAdd ">Agregar</button>
-                <button for="formDiscos" type="button" id="discosButtonSend" class="button"
-                    name="discosButtonSend">Enviar</button>
-                <button for="formDiscos" type="button" id="discosButtonx3" class="button"
-                    name="discosButtonx3">Agregar 3 elem. a la tabla</button>
-                </div>
-                
-                <ul id="bandsToAdd" class="standBy hide">
+        <ul id="bandsToAdd" class="standBy hide">
 
-                </ul>
-            </div>
+        </ul>
+    </div>
 
-        </form>
-    </section>
-    <section>
-        <div class="content">
-            <h2>Generos musicales y algunos ejemplos</h2>
-            <input type="text" class="input" id="filterSearch" placeholder="Busqueda rapida...">
-            <table>
-                <thead>
-                    <tr>
-                        <td>Género</td>
-                        <td>Artistas / Bandas</td>
-                        <td>Discografia</td>
-                        <td>Editar</td>
-                        <td>Borrar</td>
-                    </tr>
-                </thead>
-                <tbody id="tablaBandas">
-                </tbody>
-            </table>
+</form>
 
-            <h2>Top 10 Mejores Bandas Argentinas</h2>
-            <ol>
-                <li>Soda Stereo</li>
-                <li>Babasónicos</li>
-                <li>Divididos</li>
-                <li>Los Piojos</li>
-                <li>Enanitos Verdes</li>
-                <li>La renga</li>
-                <li>Los Auténticos Decadentes</li>
-                <li>Patricio Rey y sus Redonditos</li>
-                <li>Los Fabulosos Cadillacs</li>
-                <li>Sumo</li>
-            </ol>
-        </div>
-    </section>
+<div class="content">
+    <h2>Generos musicales y algunos ejemplos</h2>
+    <input type="text" class="input" id="filterSearch" placeholder="Busqueda rapida...">
+    <table>
+        <thead>
+            <tr>
+                <td>Género</td>
+                <td>Artistas / Bandas</td>
+                <td>Discografia</td>
+                <td>Editar</td>
+                <td>Borrar</td>
+            </tr>
+        </thead>
+        <tbody id="tablaBandas">
+        </tbody>
+    </table>
 
-    <footer>
-        <p>Hecho por Lucas Lastra y Juan Ignacio Lastra.</p>
-    </footer>
-
-    <script src="js/tablaBandas.js"></script>
-    <script src="js/menu.js"></script>
-</body>
-
-</html>
+    <h2>Top 10 Mejores Bandas Argentinas</h2>
+    <ol>
+        <li>Soda Stereo</li>
+        <li>Babasónicos</li>
+        <li>Divididos</li>
+        <li>Los Piojos</li>
+        <li>Enanitos Verdes</li>
+        <li>La renga</li>
+        <li>Los Auténticos Decadentes</li>
+        <li>Patricio Rey y sus Redonditos</li>
+        <li>Los Fabulosos Cadillacs</li>
+        <li>Sumo</li>
+    </ol>
+</div>

@@ -54,12 +54,12 @@ table img{
     display: inline-block;
 }
 
-.hide{
-     display: none !important ;
+.display-flex{
+    display: flex;
 }
 
-.display-flex{
-    display: flex !important;
+.hide{
+     display: none;
 }
 
 h2, h3{
@@ -73,7 +73,6 @@ h3{
 }
 
 .navbar, .menu {
-    display: none;
     flex-direction: column;
     margin: 5px 0;
     justify-content: center;
