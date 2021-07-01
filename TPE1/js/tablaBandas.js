@@ -5,6 +5,9 @@ const url = "https://60d9dfbd5f7bf10017547810.mockapi.io/api/v1/bandas";
 //Agregar un elemento
 document.getElementById("discosButtonAdd").addEventListener("click", loadData);
 
+//Agregar varios elementos aleatorios
+document.getElementById("discosButtonx3").addEventListener("click", sendX3);
+
 //Inserta los elementos a la tabla del arreglo de nuevos objetos para agregar
 document.getElementById("discosButtonSend").addEventListener("click", sendBandas);
 
@@ -26,7 +29,6 @@ async function fillTable() {
             console.log("status OK");
 
             let dataBandas = await respuesta.json();
-            console.log(dataBandas);
 
             //recorro el arreglo y sus objetos y creo las filas de la tabla
             for (const banda of dataBandas) {
@@ -105,7 +107,8 @@ function loadData() {
     }
 }
 
-async function postBanda(bandsToAdd) {
+async function postBandas(bandsToAdd) {
+
     for (let i = 0; i < bandsToAdd.length; i++) {
         let nuevaBanda = {
             "banda": {
@@ -119,6 +122,7 @@ async function postBanda(bandsToAdd) {
 }
 
 async function doRequest(url, method, body) {
+
     let data = {
         "method": method,
         "headers": { "Content-type": "application/json" }
@@ -135,16 +139,84 @@ async function doRequest(url, method, body) {
 }
 
 async function sendBandas() {
-    postBanda(bandsToAdd);
-    bandsToAdd = [];
-    document.querySelector("#bandsToAdd").innerHTML = 'Cargando...';
 
-    //CAMBIAR!!!
+    if(bandsToAdd == ""){
+        document.querySelector("#bandsToAdd").classList.toggle('hide');
+        document.querySelector("#bandsToAdd").innerHTML = 'Primero debes agregar bandas!';
+    }else{
+        postBandas(bandsToAdd);
+        bandsToAdd = [];
+        document.querySelector("#bandsToAdd").innerHTML = 'Cargando...';
+    }
     setTimeout(() => {
         fillTable();
         document.querySelector("#bandsToAdd").innerHTML = '';
         document.querySelector("#bandsToAdd").classList.add('hide');
     }, 3000);
+}
+
+function sendX3(){
+    //suponer que son bandas aleatorias
+    let bandasAleatorias = [
+        {
+            "banda": {
+             "genero": "rock",
+             "nombre": "Los Piojos",
+             "discografia": [
+              "Azul",
+              "3er arco",
+              "Ay ay ay"
+             ]
+            }
+           },
+           {
+            "banda": {
+             "genero": "rock",
+             "nombre": "divididos",
+             "discografia": [
+              "El narigon del siglo",
+              "amapola del 66"
+             ]
+            }
+           },
+           {
+            "banda": {
+             "genero": "Thrash",
+             "nombre": "Metallica",
+             "discografia": [
+              "St. Anger",
+              "Death Magnetic",
+              "Hardwired... to Self-Destruct"
+             ]
+            }
+           },
+           {
+            "banda": {
+             "genero": "Funk",
+             "nombre": "Red Hot Chili Peppers",
+             "discografia": [
+              "I'm with You",
+              "The Getaway"
+             ]
+            }
+           },
+           {
+            "banda": {
+             "genero": "Rock",
+             "nombre": "Radiohead",
+             "discografia": [
+              "In Rainbows",
+              "Hail to the Thief"
+             ]
+            }
+           }
+    ]
+    for(let i = 0; i<3; i++){
+        bandsToAdd.push(bandasAleatorias[
+            Math.floor(Math.random()*bandasAleatorias.length)
+        ])
+    }
+    sendBandas();
 }
 
 function filterSearch() {
@@ -154,8 +226,6 @@ function filterSearch() {
     filter = input.value.toUpperCase();
     table = document.getElementById("tablaBandas");
     tr = table.getElementsByTagName("tr");
-
-    console.log(tr);
 
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td");
@@ -191,6 +261,7 @@ function createButton(name, action) {
 }
 
 async function editRow() {
+
     let input = document.createElement("input");
     let buttonSend = document.createElement("button");
 
@@ -199,31 +270,31 @@ async function editRow() {
 
     let response = await doRequest(url + `/${id}`, "GET");
     let banda = await response.json();
+    let contador = 0;
 
-    input.value = banda['banda'].discografia[0];
+    while(contador < banda['banda'].discografia.length){
+        input.value += banda['banda'].discografia[contador] + ",";
+        contador++;
+    }
+
     input.classList.add("input");
-    this.parentNode.previousElementSibling.replaceWith(input);
+    await this.parentNode.previousElementSibling.replaceWith(input);
 
     buttonSend.classList.add("button");
     buttonSend.innerHTML = "SEND";
     buttonSend.addEventListener('click', () => {
         
         banda['banda'].discografia = [input.value];
-
-        console.log(banda);
-
         doRequest(url + `/${id}`, "PUT", banda);
         fillTable();
     });
 
     input.parentNode.insertBefore(buttonSend, input);
-
 }
 
 async function deleteRow() {
 
     let id = this.name;
-
     let response = await doRequest(url + `/${id}`, "DELETE");
 
     if (response.ok) {
